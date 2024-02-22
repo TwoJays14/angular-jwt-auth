@@ -8,7 +8,7 @@ import { User } from '../../models/user.model';
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent implements OnInit {
-  users: User | undefined;
+  users: User[] | undefined;
   message: string | undefined;
 
   constructor(private http: HttpClient) {}
@@ -21,15 +21,17 @@ export class DashboardComponent implements OnInit {
   }
 
   loadUsers() {
-    this.http.get<User>('https://dummyjson.com/user/me').subscribe(
+    this.http.get<User[]>('http://localhost:3000/posts').subscribe(
       (res) => {
         if (res) {
+          console.log(res);
+
           this.users = res;
           this.message = '';
         }
       },
       (error) => {
-        if (error.status === 401) {
+        if (error.status === 403) {
           this.message = 'You are not authorized to view this page';
         }
         console.log(error);

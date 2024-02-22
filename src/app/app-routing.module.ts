@@ -6,13 +6,15 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: '',
     component: LayoutComponent,
-    children: [{ path: 'dashboard', component: DashboardComponent }],
+    children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Redirect to dashboard when the root path is accessed
+      { path: 'dashboard', component: DashboardComponent }, // Protected route under LayoutComponent
+    ],
   },
-  { path: '**', component: LoginComponent },
+  { path: '**', redirectTo: 'login' }, // Redirect to login for any unmatched routes
 ];
 
 @NgModule({

@@ -17,11 +17,13 @@ export class LoginComponent {
 
   onLogin() {
     this.http
-      .post('https://dummyjson.com/auth/login', this.loginObj)
+      .post('http://localhost:4000/login', this.loginObj)
       .subscribe((res: any) => {
         if (res) {
+          console.log(res);
           alert('Login successful');
-          localStorage.setItem('jwt', res.token);
+          localStorage.setItem('jwt', res.accessToken);
+          localStorage.setItem('refreshJWT', res.refreshToken);
           this.router.navigateByUrl('/dashboard');
         } else {
           alert(res.message);

@@ -1,14 +1,17 @@
 <h1>
   {{ message }}
 </h1>
+
 <ul *ngIf="message === ''">
-  <li>
-    {{ users?.address?.address }}
-  </li>
-  <li>
-    {{ users?.firstName }}
-  </li>
-  <li>
-    {{ users?.bank?.cardType }}
-  </li>
+@for (user of users; track user.username) {
+    <li>
+      {{ user.username }}
+    </li>
+    <li>
+      {{ user.password }}
+    </li>
+    <li>
+      {{ user.title }}
+    </li>
+}
 </ul>
