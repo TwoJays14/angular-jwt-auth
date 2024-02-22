@@ -1,0 +1,14 @@
+<h1>
+  {{ message }}
+</h1>
+<ul *ngIf="message === ''">
+  <li>
+    {{ users?.address?.address }}
+  </li>
+  <li>
+    {{ users?.firstName }}
+  </li>
+  <li>
+    {{ users?.bank?.cardType }}
+  </li>
+</ul>
